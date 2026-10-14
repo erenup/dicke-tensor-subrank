@@ -1,0 +1,347 @@
+\section{Large average-free sets}
+\label{sec:average-free-sets}
+
+The hashing argument uses the following form of the no-carry sphere
+construction. Generalized average-free sets of this kind occur in
+\cite{VC2015,CVZ2019}. We include the construction and its size estimate
+to specify exactly the property needed here.
+
+\begin{lemma}[Average-free sets]
+\label{lem:average-free}
+Fix an integer $L\geq 2$. For every sufficiently large integer $q$ there
+is a set
+\[
+ B\subseteq\left\{0,\ldots,\left\lfloor\frac{q-1}{L}\right\rfloor\right\}
+\]
+such that
+\[
+ x_1+\cdots+x_L=Ly,\qquad x_1,\ldots,x_L,y\in B,
+ \quad\Longrightarrow\quad x_1=\cdots=x_L=y,
+\]
+and
+\[
+ \log|B|=\log q-O_L\!\left(\sqrt{\log q}\right).
+\]
+The integer $q$ need not be prime in this lemma.
+\end{lemma}
+
+\begin{proof}
+Put
+\[
+ \ell=\left\lfloor\sqrt{\log q}\right\rfloor,
+ \qquad
+ m=\left\lfloor\frac{(q/(2L))^{1/\ell}}{L}\right\rfloor,
+ \qquad b=Lm.
+\]
+For sufficiently large $q$, we have $\ell\geq 1$, $m\geq 2$, and
+$b^\ell\leq q/(2L)$. There are $m^\ell$ vectors in
+$\{0,\ldots,m-1\}^{\ell}$ and at most $\ell(m-1)^2+1$ possible values
+of their squared Euclidean norms. Choose a norm level $\mathcal C$
+with
+\[
+ |\mathcal C|\geq\frac{m^\ell}{\ell(m-1)^2+1},
+\]
+and encode its vectors in base $b$:
+\[
+ B=\left\{\sum_{t=0}^{\ell-1}a_t b^t:
+                (a_0,\ldots,a_{\ell-1})\in\mathcal C\right\}.
+\]
+The encodings are distinct and lie between $0$ and $b^\ell-1$.
+Since $b^\ell\leq q/(2L)$, they belong to the required interval.
+
+Suppose that $x_1+\cdots+x_L=Ly$ for elements of $B$, and let
+$a^{(1)},\ldots,a^{(L)},c\in\mathcal C$ be their digit vectors.
+Every digit sum on either side is at most $L(m-1)<b$. Thus neither
+side has carries, and uniqueness of the base-$b$ expansion gives
+\[
+ a^{(1)}+\cdots+a^{(L)}=Lc.
+\]
+All these vectors have the same squared norm. Consequently
+\[
+ \frac1L\sum_{i=1}^L\lVert a^{(i)}-c\rVert^2
+ =\frac1L\sum_{i=1}^L\lVert a^{(i)}\rVert^2-\lVert c\rVert^2
+ =0.
+\]
+Each $a^{(i)}$ equals $c$, proving the average-free property.
+
+For the size estimate, write $t=\log q$. Then $\ell\asymp\sqrt t$
+and
+\[
+ \log m=\frac{t-\log(2L)}{\ell}-\log L+O_L(m^{-1})
+       =\sqrt t+O_L(1).
+\]
+In particular $m\to\infty$, and
+\[
+ \ell\log m=t-\log(2L)-\ell\log L+O_L(\ell/m)
+             =t-O_L(\sqrt t).
+\]
+Moreover,
+\[
+ \log\bigl(\ell(m-1)^2+1\bigr)
+ \leq \log(\ell+1)+2\log m=O_L(\sqrt t).
+\]
+The lower bound for $|\mathcal C|=|B|$ therefore gives
+$\log|B|\geq\log q-O_L(\sqrt{\log q})$. The opposite estimate
+$|B|\leq q$ completes the proof.
+\end{proof}
+
+\section{Hashes and exact survival probabilities}
+\label{sec:hashing}
+
+We retain the notation $S\subseteq\mathbb Z^k$, $M$, $h$, $E_j$,
+and $\beta$ from Section~\ref{sec:fibers}, with $k\geq 3$ fixed. In
+particular, every column in $S$ has coordinate sum zero. We use the
+tight-support hashing construction of \cite{CVZ2019}; the uniform rank
+bound and the exact probabilities needed here are established below.
+
+\begin{lemma}[Uniform reduction of ranks]
+\label{lem:rank-reduction}
+Let
+\[
+ C=\max_{s,s'\in S}\max_{1\leq i\leq k}|s_i-s'_i|,
+ \qquad
+ B_0>\max\{k,\,k!\max\{1,C\}^{k}\}.
+\]
+For every prime $q>B_0$, any integer matrix whose columns belong to
+$S-S$ has the same rank over $\Q$ and over $\F_q$. The threshold is
+independent of the number of columns.
+\end{lemma}
+
+\begin{proof}
+If the rational rank is zero, every entry is zero and the assertion
+is immediate. Otherwise, let that rank be $r$. There is a nonzero
+integer $r\times r$ minor, of absolute value at most
+\[
+ r!C^r\leq k!\max\{1,C\}^{k}<q.
+\]
+It remains nonzero modulo $q$, so the rank over $\F_q$ is at least
+$r$. Every larger minor is zero as an integer and remains zero
+modulo $q$, proving the opposite inequality. The argument depends
+only on the entries and the number $k$ of rows.
+\end{proof}
+
+Fix a prime $q>B_0$ large enough for Lemma~\ref{lem:average-free}
+with $L=k-1$, and fix a positive multiple $N$ of $M$. Choose the set
+$B$ from that lemma, viewed also as a subset of $\F_q$ by reduction
+modulo $q$. Choose
+\[
+ v=(v_1,\ldots,v_N)\in\F_q^N,
+ \qquad u_1,\ldots,u_{k-1}\in\F_q
+\]
+independently and uniformly. For an integer-labelled local word
+$w=(w_1,\ldots,w_N)$, define
+\begin{align*}
+ b_i(w)&=u_i+\sum_{t=1}^Nw_t v_t &&(1\leq i<k),\\
+ b_k(w)&=\frac{\sum_{i<k}u_i-\sum_{t=1}^Nw_t v_t}{k-1}.
+\end{align*}
+These expressions are in $\F_q$; the denominator is invertible
+because $q>k$.
+
+An original support edge $I\in S^N$ may be described by its columns
+$I(t)\in S$ or by its $k$ local words $I_1,\ldots,I_k$. The
+zero-sum condition on every column gives
+\begin{equation}
+ \sum_{i<k}b_i(I_i)=(k-1)b_k(I_k)\qquad\text{in }\F_q.
+ \label{eq:tight-hash-relation}
+\end{equation}
+Keep in each mode exactly the local basis words whose hash belongs
+to $B$. This is a coordinate restriction of all $k$ factors. If
+$I$ survives, represent each of its hashes by the corresponding
+integer in $B$. Both sides of \eqref{eq:tight-hash-relation} then
+belong to $[0,q-1]$, so their congruence is an equality of integers.
+Lemma~\ref{lem:average-free} implies that all $k$ hashes equal a
+single element of $B$. Conversely, this condition implies survival.
+
+For a fixed edge $I$ and a prescribed common hash $b\in B$, each
+choice of $v$ permits exactly one offset tuple: set
+$u_i=b-\sum_t I_i(t)v_t$ for $i<k$. The last hash then also equals
+$b$ by \eqref{eq:tight-hash-relation}. The events for distinct $b$
+are disjoint. Of the $q^{N+k-1}$ choices of all hashing variables,
+exactly $|B|q^N$ make $I$ survive. Thus
+\begin{equation}
+ \Prob[I\text{ survives}]=|B|q^{-(k-1)}.
+ \label{eq:single-survival}
+\end{equation}
+
+Now let distinct original edges $I,J\in S^N$ share a local word,
+say $I_j=J_j$. Put
+\[
+ V=\operatorname{span}_{\Q}
+       \{I(t)-J(t):1\leq t\leq N\},
+ \qquad r=\dim V.
+\]
+Every column difference has coordinate sum zero and coordinate $j$
+equal to zero. Hence $V\subseteq E_j$ and $r\leq k-2$. Also
+$r\geq 1$, since the integer labelling is injective and $I\ne J$.
+
+If both edges survive, their common hash values agree: the shared
+local word has the same hash for both. For a prescribed common
+$b\in B$, the offsets are uniquely determined by $I$ once $v$ is
+chosen. The additional conditions on $J$ are precisely
+\[
+ \sum_{t=1}^N\bigl(I_i(t)-J_i(t)\bigr)v_t=0,
+ \qquad 1\leq i<k.
+\]
+The rows of the full $k\times N$ difference matrix sum to zero.
+Its last row is therefore redundant, over both $\Q$ and $\F_q$.
+Deleting that row leaves rank $r$ by
+Lemma~\ref{lem:rank-reduction}. The displayed system has exactly
+$q^{N-r}$ solutions for $v$, each with one associated offset tuple.
+Consequently
+\begin{equation}
+ \Prob[I\text{ and }J\text{ survive}]
+       =|B|q^{-(k-1+r)}.
+ \label{eq:pair-survival}
+\end{equation}
+This argument also applies when the shared mode is $j=k$: its
+shared hash still forces equality of the two common values, and
+the last row remains redundant. Neither edge is required to have
+uniform joint type for \eqref{eq:single-survival} or
+\eqref{eq:pair-survival}.
+
+\section{Isolation against the full original support}
+\label{sec:isolation}
+
+We now distinguish the counting class $\mathcal A_N$ from the
+support $S^N$ of the full tensor power. Let $X$ count surviving
+candidates $I\in\mathcal A_N$. Let $Y$ count ordered pairs $(I,J)$
+such that $I$ is a surviving candidate, $J\ne I$ is any surviving
+original edge, and $I$ and $J$ share a local word in at least one
+mode. In particular, no type condition is imposed on $J$.
+Equation~\eqref{eq:single-survival} gives
+\begin{equation}
+ \E X=|\mathcal A_N|\,|B|q^{-(k-1)}.
+ \label{eq:candidate-expectation}
+\end{equation}
+
+Let $\mathcal V$ be the collection of distinct nonzero rational
+spans of subsets of $S-S$ that are contained in at least one $E_j$,
+and put $K=|\mathcal V|$. This collection is finite because $S-S$
+is finite; it depends on $\mathbf d$, but not on $N$. Every
+$V\in\mathcal V$ has dimension between $1$ and $k-2$, and each
+pair counted by $Y$ has exactly one such difference span.
+
+Fix $I\in\mathcal A_N$ and $V\in\mathcal V$ of dimension $r$.
+The number of partners $J\in S^N$ whose column differences with
+$I$ span exactly $V$ is at most the number whose differences all
+belong to $V$. By \eqref{eq:fiber-count} and
+Lemma~\ref{lem:fiber-entropy}, this latter number is at most
+$\exp(Nr\beta)$. We use a mode $j$ with $V\subseteq E_j$ only to
+apply that entropy estimate; we do not sum over choices of $j$.
+Summing \eqref{eq:pair-survival} over the candidates and their
+possible difference spans therefore yields
+\begin{equation}
+ \E Y\leq \E X
+       \sum_{V\in\mathcal V}
+          \exp\bigl(N\dim(V)\beta\bigr)q^{-\dim(V)}.
+ \label{eq:collision-expectation}
+\end{equation}
+The larger fiber count is an upper bound even though it also
+allows partners of smaller difference span. Each actual pair is
+assigned to its unique exact span in this sum, so there is no
+extra multiplicity for the shared mode.
+
+For a realization of the hashing variables, call a surviving
+candidate \emph{isolated} if it shares no local word with any other
+surviving original edge. Denote the set of these candidates by
+$\mathcal I$. Every nonisolated candidate contributes at least one
+ordered pair to $Y$, and hence
+\[
+ |\mathcal I|\geq X-Y.
+\]
+This is the candidate-indicator instance of the weighted
+global-isolation principle from \cite{VC2019}. The point needed
+for a coordinate restriction is that the comparison uses the
+entire original support, as follows.
+
+If $\mathcal I$ is empty, then $X-Y\leq 0$ and the corresponding
+lower estimate follows already from $\Qmon\geq 1$. Otherwise,
+retain exactly the local words belonging to the edges in
+$\mathcal I$. Distinct edges of $\mathcal I$ have distinct local
+words in every mode, since they are isolated. Any original edge
+remaining after this final coordinate restriction would have
+survived the earlier hash restriction. It also shares a retained
+word with some $I\in\mathcal I$. If it differed from $I$, it would
+contradict the definition of isolation. Thus the remaining support
+is exactly $\mathcal I$, and independent relabelling in the $k$
+modes gives the diagonal tensor of size $|\mathcal I|$.
+
+The hashing probability space is finite, so some realization has
+$X-Y\geq\E(X-Y)$. We have proved
+\begin{equation}
+ \Qmon\bigl(D_{\mathbf d}^{\boxtimes N}\bigr)\geq\E(X-Y).
+ \label{eq:expected-diagonal}
+\end{equation}
+No local restriction selecting $\mathcal A_N$ was used. Isolation
+only within the candidate class would not justify the conclusion:
+an edge of $S^N\setminus\mathcal A_N$ could remain on the retained
+local words.
+
+\section{The entropy lower bound}
+\label{sec:lower-bound}
+
+Fix $\delta>0$ and set $\lambda=\beta+\delta>0$. Choose primes
+$q$ tending to infinity, and for sufficiently large $q$ define
+\[
+ N=N(q)=M\left\lfloor\frac{\log q}{M\lambda}\right\rfloor.
+\]
+Then $N$ is a positive multiple of $M$, tends to infinity with
+$q$, and satisfies
+\begin{equation}
+ N\lambda\leq\log q<(N+M)\lambda.
+ \label{eq:prime-first-subsequence}
+\end{equation}
+The primes are chosen first and the tensor powers second. Thus
+unboundedness of the primes suffices; no estimate for prime gaps
+is needed. For all sufficiently large $q$, both the rank threshold
+and Lemma~\ref{lem:average-free} apply.
+
+For $r=\dim V\geq 1$, equation~\eqref{eq:prime-first-subsequence}
+gives
+\[
+ \exp(Nr\beta)q^{-r}\leq\exp(-Nr\delta)
+                       \leq\exp(-N\delta).
+\]
+It follows from \eqref{eq:collision-expectation} that
+\[
+ \E Y\leq\E X\,K\exp(-N\delta).
+\]
+Combining this inequality with \eqref{eq:candidate-expectation}
+and \eqref{eq:expected-diagonal} yields
+\begin{equation}
+ \Qmon\bigl(D_{\mathbf d}^{\boxtimes N}\bigr)
+ \geq\bigl(1-Ke^{-N\delta}\bigr)
+        |\mathcal A_N|\,|B|q^{-(k-1)}
+ \label{eq:finite-monomial-bound}
+\end{equation}
+for these powers and all sufficiently large $q$. The prefactor
+is positive and tends to one.
+
+All of $\mathbf d,k,M,K,\beta,\delta$ are fixed before $q$ tends
+to infinity. By \eqref{eq:type-count},
+$\log|\mathcal A_N|=Nh-o(N)$. Lemma~\ref{lem:average-free} gives
+$\log|B|=\log q-O_k(\sqrt{\log q})$, and
+\eqref{eq:prime-first-subsequence} gives
+$\log q=N(\beta+\delta)+O_{\mathbf d,\delta}(1)$.
+In particular $\log q=O_{\mathbf d,\delta}(N)$, so the error in
+the average-free estimate is $o(N)$. The logarithm of the right
+side of \eqref{eq:finite-monomial-bound} is consequently
+\begin{align*}
+ Nh-(k-2)\log q-o(N)
+ &=N\bigl[h-(k-2)(\beta+\delta)\bigr]-o(N)\\
+ &=N\bigl[\HH(p)-(k-2)\delta\bigr]-o(N).
+\end{align*}
+Here we used $(k-2)\beta=h-\HH(p)$.
+
+Lemma~\ref{lem:limits} transfers this lower bound along the
+unbounded sequence of powers to the asymptotic limit, giving
+\[
+ \log\Qmt(D_{\mathbf d})\geq\HH(p)-(k-2)\delta.
+\]
+Since $\delta>0$ was arbitrary, and every coordinate restriction
+is a linear restriction, we conclude that
+\begin{equation}
+ \Qt(D_{\mathbf d})\geq\Qmt(D_{\mathbf d})
+                    \geq\exp\bigl(\HH(p)\bigr).
+ \label{eq:monomial-lower}
+\end{equation}

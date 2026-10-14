@@ -1,0 +1,24 @@
+{
+  "files": {
+    "TR28.lean": "c56fba53dae466240be4da982711f5802e9db8a769872ef544c873727be51fc4",
+    "TR28/Counting.lean": "6bc6cea4ccc32c1d1987917e5a28e84e48f1e68185ce98aed71e247850b6ce33",
+    "TR28/Definitions.lean": "ba51baff6753f6c143b900f5289baf7fc59968aa68579a3a4d8e3fc8bba3d0eb",
+    "TR28/Density.lean": "54b7052fc22b2f552b5ae53609c66d7be73810c4fbc4311f535065b8ff10058a",
+    "TR28/Isolation.lean": "ed0130359216d8bfa000f2530dd2d75b2a0735f73f893773e3142b770de86b85",
+    "TR28/LinearCount.lean": "dfe1bde7d7bc69613c010d67a6ee8b522fc1527d8c33dab1d188dc37cd115b8d",
+    "TR28/Proofs.lean": "7ce5edd4ffeed3ba8255f24e554db507f5b6019fb21bd2fb9ceb3cae92a84670",
+    "TR28/Statement.lean": "bd5dd1252e0a3fcae5e5858816f6dc404eef1ac8d5db74bcd4da83bd8fe9cbb6",
+    "audit/FinalProbe.lean": "09f5b0223dff27410bd26278500771bcd79301a2ee827e78af78e67de185c1de",
+    "audit/TARGETS.json": "7bbe0b5aaf05cc25c6aa6b8c923179d5d259b650856cf0f632eeb713a372dcd8",
+    "audit/controls/CandidateOnlyIsolation.lean": "c7e24270d097490a61ba99cb4183c970f2e9c11e929cbaa16398c7965e3b1db6",
+    "audit/controls/Positive.lean": "4aad9553fd2504419d03ce9cec18944d4c0c5c5b930b74cfceb33994a680d404",
+    "audit/controls/WrongFullPartnerCount.lean": "2d6380df1b85f5beda4e36b9f718c0775a48b21082c37bc31de89d991d0038e0",
+    "audit/controls/WrongKernelCount.lean": "8e242db06cecc990e8a4e68655fe01dc0993cdfd9b831359d4569c56131ad17b",
+    "audit/controls/ZeroModeExtraction.lean": "2b6f813ab823cb722b6d64d32cd0f79122f9b9ebd9f7cebfbc2f5532c423dc67",
+    "lake-manifest.json": "ebb20f27b59420a2a2874b2e6ec879f43b1edf3502c3f2ccc3bd431246eaaec3",
+    "lakefile.toml": "a5926b23a809f7119fcb2406d290ca85fc7aefc2c77e260342cbc8b0fac86c34",
+    "lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
+    "verify": "35dca3032941507041c595357ff36c2e05c58521555680a1ba12c19ea13987bc"
+  },
+  "schema": 1
+}

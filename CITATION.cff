@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying paper; authorship is TBD."
+title: "The asymptotic subrank of every Dicke tensor"
+type: software
+authors:
+  - name: "TBD"
+abstract: >-
+  The entropy formula for the ordinary asymptotic subrank of every Dicke
+  tensor over the complex numbers, with a coordinate-restriction lower
+  bound and all original tensor modes kept separate. Includes a paper,
+  ten finite algebraic targets in Lean, and exact supporting checks.
+license: MIT
+keywords:
+  - Dicke tensors
+  - asymptotic subrank
+  - entropy
+  - coordinate restrictions

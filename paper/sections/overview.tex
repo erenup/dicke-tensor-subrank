@@ -1,0 +1,124 @@
+\subsection*{A concrete tensor}
+
+Let $e_1=(1,0)^{\mathsf T}$ and $e_2=(0,1)^{\mathsf T}$. Start with
+\[
+ D_{(2,1)}=e_1\otimes e_1\otimes e_2
+          +e_1\otimes e_2\otimes e_1
+          +e_2\otimes e_1\otimes e_1.
+\]
+This is a $2\times2\times2$ array: its entries at $(1,1,2)$, $(1,2,1)$
+and $(2,1,1)$ are one, and all other entries are zero. It sums all
+arrangements of two occurrences of the first symbol and one of the
+second. A general Dicke tensor does the same for an arbitrary positive
+multiplicity tuple $\mathbf d$.
+
+\begin{center}
+\begin{tabular}{@{}lp{0.51\textwidth}l@{}}
+\toprule
+Symbol & Meaning & This example\\
+\midrule
+$n$ & Number of symbols; dimension of each original factor & $2$\\
+$\mathbf d$ & Positive symbol multiplicities & $(2,1)$\\
+$k=\sum_a d_a$ & Number of original tensor factors & $3$\\
+$N$ & Number of copies of the whole tensor & Any positive integer\\
+$q$ & Size of the extracted diagonal tensor & An integer to maximize\\
+$p=\mathbf d/k$ & Symbol-frequency distribution & $(2/3,1/3)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{From diagonal extraction to an entropy-determined rate}
+
+The target of a restriction is the unit tensor
+$\Delta_q=\sum_{j=1}^q e_j^{\otimes k}$. For example,
+$\Delta_2=e_1\otimes e_1\otimes e_1+e_2\otimes e_2\otimes e_2$
+when $k=3$. This is a target diagonal structure, not another expression
+for $D_{(2,1)}$. Subrank asks for the largest such $q$ obtainable by
+independent complex-linear maps on the factors. For two factors this
+is matrix rank; with more factors it measures the size of a diagonal
+that can be extracted by these separate maps.
+
+Taking $N$ copies groups corresponding positions only. Thus two copies
+of the example form a $4\times4\times4$ array, by the regrouping
+\[
+ (e_a\otimes e_b\otimes e_c)\otimes
+ (e_{a'}\otimes e_{b'}\otimes e_{c'})
+ \longmapsto
+ (e_a\otimes e_{a'})\otimes(e_b\otimes e_{b'})\otimes
+ (e_c\otimes e_{c'}).
+\]
+There remain three factors. In general there remain $k$ factors, each
+of dimension $n^N$; we never merge different original modes.
+
+For $q_N=Q(D_{\mathbf d}^{\boxtimes N})$, the theorem identifies the
+leading exponential growth by the entropy of the symbol frequencies:
+\[
+ \lim_{N\to\infty}q_N^{1/N}=2^{\HH_2(p)},\qquad
+ \log_2 q_N=N\HH_2(p)+o(N),\qquad
+ \HH_2(p)=-\sum_a p_a\log_2 p_a.
+\]
+In the example,
+\[
+ \HH_2(2/3,1/3)\approx0.9183,\qquad
+ 2^{\HH_2(2/3,1/3)}=\frac{3}{2^{2/3}}\approx1.8899.
+\]
+The growth base need not be an integer. This does not say that any
+finite $q_N$ equals $(1.8899)^N$, or that the single-copy subrank equals
+that noninteger. The limit is taken for each fixed tuple $\mathbf d$.
+The example belongs to the W-tensor family treated by
+\citet[Theorem~11]{VC2015}; it illustrates the question, rather than
+the extent of the all-multiplicity conclusion.
+
+The general entropy formula was proposed as an entanglement-conversion
+rate in \citet[Section~VI, equation~(40)]{VC2015} and restated for
+ordinary asymptotic subrank in \citet[Conjecture~4.26]{OV2025}.
+Theorem~\ref{thm:main} settles it for every positive multiplicity tuple.
+It also proves that coordinate selection, followed by independent
+relabelling, attains the same exponential rate as arbitrary independent
+linear maps. The question settled is therefore the exact leading
+exponent of extractable diagonal structure throughout this family.
+The source conventions and their comparison are detailed in
+Section~\ref{sec:history}.
+
+\subsection*{Proof roadmap: symmetry controls entropy, entropy controls selection}
+
+The central entropy statement is Lemma~\ref{lem:invariant}. Let $E$
+be a positive-dimensional finite-dimensional vector space over $\Q$,
+let $X$ be an $E$-valued random variable with finite support, and let a
+group act $\Q$-linearly and irreducibly on $E$. Assume that $gX$ has
+the same law as $X$ for every group element $g$. Then every rational
+linear subspace $V\leq E$ satisfies
+\[
+ \HH_2(X\mid X\bmod V)
+ \leq \frac{\dim V}{\dim E}\,\HH_2(X).
+\]
+Here $X\bmod V$ is the coset label. The base of the logarithm is
+immaterial to this inequality; Section~\ref{sec:entropy} uses natural
+logarithms throughout its proof.
+
+The function $V\mapsto\HH(X\mid X\bmod V)$ is supermodular on the
+subspace lattice. Among nonzero subspaces maximizing entropy per dimension,
+choose one of largest dimension. Invariance and supermodularity force
+it to be invariant under the group, so irreducibility makes it all of
+$E$. Applied to the permutation-invariant conditional distributions
+obtained by fixing one tensor coordinate, this bounds the entropy of
+each collision fiber in proportion to its dimension.
+
+This entropy bound becomes an exact bound on the number of possible
+partners of a candidate of one full joint type. The partner may lie
+anywhere in the original support. Rank-dependent hashing and an
+average-free set then control simultaneous survival of colliding
+edges. Global isolation leaves a diagonal support obtainable by local
+coordinate deletion and relabelling. Isolation is checked against
+\emph{all original support edges}, so no uncounted mixed edge remains.
+Sections~\ref{sec:fibers}--\ref{sec:lower-bound} give the counts,
+modular-rank argument, construction and asymptotic passage in full.
+
+For the opposite inequality, a slice cover gives
+$Q(D_{\mathbf d}^{\boxtimes N})\leq k\,2^{N\HH_2(p)}$ for every
+$N\geq1$, allowing arbitrary independent linear maps
+(Section~\ref{sec:upper}). Together, the bounds identify the entropy
+rate. The existence of the limit and the two-factor endpoint are
+included in Section~\ref{sec:limits}.
+
+\subsection*{Precise statement and conventions}

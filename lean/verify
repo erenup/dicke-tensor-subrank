@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+"""Check the source audit in both Python modes, then rebuild the Lean core."""
+from pathlib import Path
+import subprocess
+import sys
+
+
+def main():
+    if len(sys.argv) != 1:
+        raise SystemExit('FAIL: usage: lean/verify')
+    root = Path(__file__).resolve().parent
+    commands = [
+        [sys.executable, '-B', 'audit/test_verify.py'],
+        [sys.executable, '-O', '-B', 'audit/test_verify.py'],
+    ]
+    results = [subprocess.run(command, cwd=root, capture_output=True, check=False)
+               for command in commands]
+    for result in results:
+        if result.returncode != 0:
+            sys.stdout.buffer.write(result.stdout)
+            sys.stderr.buffer.write(result.stderr)
+            raise SystemExit('FAIL: pre-build audit controls failed')
+    if (results[0].stdout, results[0].stderr) != (results[1].stdout, results[1].stderr):
+        raise SystemExit('FAIL: Python modes disagree on pre-build audit controls')
+    sys.stdout.buffer.write(results[0].stdout)
+    sys.stdout.flush()
+    print('PASS: pre-build audit controls agree under Python optimization', flush=True)
+    result = subprocess.run([sys.executable, '-B', 'audit/verify.py'], cwd=root, check=False)
+    if result.returncode != 0:
+        raise SystemExit('FAIL: Lean audit failed')
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (OSError, ValueError, subprocess.SubprocessError) as error:
+        raise SystemExit('FAIL: execution error: ' + type(error).__name__)

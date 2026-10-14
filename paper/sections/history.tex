@@ -1,0 +1,95 @@
+\section{Relation to earlier work}
+\label{sec:history}
+
+The entropy formula for Dicke tensors was proposed in the study of
+asymptotic multipartite entanglement conversion. Vrana and Christandl
+\cite[Section~VI, equation~(40)]{VC2015} suggested that the asymptotic
+number of copies of a Dicke tensor needed per two-level GHZ tensor is
+$1/\HH_2(p)$, where $p=\mathbf d/k$ and $\HH_2$ denotes entropy with
+base-two logarithms. Equivalently, the logarithm of its asymptotic subrank
+should be $\HH_2(p)$. Oneto and Ventura explicitly restated the ordinary
+subrank formula as Conjecture~4.26 in \cite{OV2025}. Their symmetric-tensor
+convention for a monomial differs from our Dicke tensor by a nonzero
+scalar, which does not affect subrank. Permuting basis symbols also
+identifies the partition convention used in some sources with arbitrary
+positive multiplicity tuples. Throughout this paper, all $k$ tensor
+factors remain separate; tensor powers group only corresponding factors.
+
+A distinction between restriction and degeneration is needed to compare
+our conclusion with Question~1.58 of Christandl, Vrana and Zuiddam
+\cite{CVZ2019}. Our $\Qmon$ uses coordinate deletions followed by
+independent relabellings and nonzero rescalings in the individual factors.
+These are monomial restrictions in their Definition~1.6. Their monomial
+subexponent $q_{\mathrm M}$, however, is defined using monomial
+\emph{degeneration}: see Definition~1.7, equation~(1.9), and
+Definition~1.18. Correspondingly, Proposition~1.19 expresses this
+subexponent using monomial \emph{border} subrank. Remark~1.12 explicitly
+distinguishes the resulting asymptotic rate from the rate defined using
+monomial restrictions; the two are not identified there in general.
+Writing superscripts to distinguish their notation, our theorem gives
+\begin{equation}
+\label{eq:cvz-convention-comparison}
+\begin{aligned}
+ \HH_2(p)
+   &= \log_2 \Qmt(D_{\mathbf d}) \\
+   &\le q_{\mathrm M}^{\mathrm{CVZ}}(D_{\mathbf d})
+    \le q^{\mathrm{CVZ}}(D_{\mathbf d}) \\
+   &= \log_2 \Qt(D_{\mathbf d})=\HH_2(p).
+\end{aligned}
+\end{equation}
+The first comparison uses inclusion of monomial restriction in monomial
+degeneration, and the second inclusion in ordinary degeneration. The
+ordinary restriction--degeneration equivalence of
+\cite[Theorem~1.11]{CVZ2019} justifies the last comparison with ordinary
+asymptotic subrank. Thus the theorem also answers their Question~1.58,
+without assuming any general equivalence between monomial restriction
+and monomial degeneration. This external equivalence is needed only for
+this comparison of conventions, not for our proof of the ordinary or
+coordinate-restriction formula.
+
+We use the higher-order Coppersmith--Winograd construction of
+Christandl, Vrana and Zuiddam
+\cite[Theorem~1.52 and Section~3.3]{CVZ2019}. The survival probability
+of two colliding edges is
+controlled by the rational rank of their coordinate differences. We use
+this rank-dependent hashing mechanism and give the needed probability
+calculation directly. The accompanying average-free sets also have a
+standard antecedent: Vrana and Christandl prove the fixed-length
+average-free estimate in \cite[Lemma~10 and Appendix~A]{VC2015}, quoted
+as Proposition~3.2 in \cite{CVZ2019}. Our proof includes a no-carry digit
+construction on a common Euclidean sphere. We make no novelty claim for
+the hashing or average-free mechanisms.
+
+Counting a specified class of candidates while testing isolation against
+the entire surviving support likewise has a published precedent.
+Vrana and Christandl's weighted isolation lemma
+\cite[Lemma~2.3, arXiv version~2]{VC2019} permits an arbitrary nonnegative weight on the
+full supported set and bounds its sum over globally isolated vertices
+of the collision graph. An indicator weight selects a prescribed joint
+type for counting purposes while leaving every possible collider in the
+graph. Our argument uses this isolation principle with a fixed full
+type and derives the required collision estimate from permutation
+symmetry. The selection of a full joint type is not presumed to be a
+local tensor restriction: the local restriction is obtained only after
+isolation in the full support.
+
+There is a related distinction in the entropy optimization of
+\cite[Theorem~1.52]{CVZ2019}. Its feasible pair distributions prescribe
+only the $2k$ one-coordinate marginals, not both full support-valued
+marginal laws. An entropy bound proved for a uniform full first law
+therefore cannot simply be substituted into that optimization. We do
+not invoke the theorem as a black box or claim to evaluate its displayed
+optimization. Instead, we count partners of each fixed candidate by
+exact quotient fibers, and bound their entropy by an invariant-subspace
+argument. This supplies the collision estimate needed for arbitrary
+positive multiplicities, without assuming separate all-binary or
+all-distinct cases.
+
+Finally, diagonal slice rank and entropy upper bounds are established
+parts of the slice-rank method; see Tao and Sawin
+\cite[Example~5 and Proposition~6]{TaoSawin2016}. We include elementary
+proofs of the facts used here. A score assigned to each local word
+partitions every support entry into a slice and gives
+$Q(D_{\mathbf d}^{\boxtimes N})\le k\exp(N\HH(p))$ for every $N\ge1$.
+This upper bound applies to arbitrary complex linear maps and completes
+the comparison with the coordinate restrictions constructed below.

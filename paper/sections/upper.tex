@@ -1,0 +1,108 @@
+\section{The upper bound for arbitrary linear restrictions}\label{sec:upper}
+
+A \emph{slice in mode $i$} is a tensor of the form $a\otimes B$,
+with $a$ in the $i$th factor and $B$ in the tensor product of the other
+factors, placed in their original order. The \emph{slice rank} $\sr(T)$
+is the least number of slices summing to $T$; their distinguished modes
+may differ. Applying linear maps independently to the factors takes
+a slice to a slice or zero. We first prove the diagonal value needed
+to bound ordinary subrank. This fact and the entropy upper-bound method
+have precedents in \citet{TaoSawin2016}; the required arguments follow.
+
+\begin{lemma}\label{lem:product-dimension}
+For subspaces $U,V\subseteq\C^q$, let $U*V$ be the linear span of
+their coordinatewise products. Then
+\begin{equation}\label{eq:product-dimension}
+ \dim(U*V)\geq\dim U+\dim V-q.
+\end{equation}
+Consequently, for any $\ell\geq1$ and $U_1,\ldots,U_\ell\subseteq\C^q$,
+\begin{equation}\label{eq:iterated-product}
+ \dim\operatorname{span}\{u_1*\cdots*u_\ell:u_i\in U_i\}
+    \geq q-\sum_{i=1}^{\ell}\codim U_i.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $A$ be the union of the coordinate supports of vectors in $U$.
+There is $u\in U$ nonzero in every coordinate of $A$: each such
+coordinate is a nonzero linear function on $U$, and a finite union of
+their proper kernels cannot cover a vector space over the infinite
+field $\C$. Equivalently, the product of these linear functions is
+a nonzero polynomial and is nonzero somewhere. If $U=0$, take $A$
+empty and $u=0$.
+
+Coordinatewise multiplication by $u$ on $\C^q$ has kernel of dimension
+$q-|A|$. Since $\dim U\leq|A|$, its restriction to $V$ gives
+\[
+ \dim(U*V)\geq\dim(u*V)
+     \geq\dim V-(q-|A|)\geq\dim V+\dim U-q.
+\]
+Iterate this inequality, using bilinearity of coordinatewise
+multiplication to identify the successive spans. The case $\ell=1$
+of \eqref{eq:iterated-product} is an equality.
+\end{proof}
+
+\begin{lemma}\label{lem:diagonal-slice}
+For every $k\geq2$ and $q\geq1$, $\sr(\Delta_q)=q$.
+In particular, $Q(T)\leq\sr(T)$ for every $k$-tensor $T$ over $\C$.
+\end{lemma}
+\begin{proof}
+Consider any slice decomposition of $\Delta_q$. For each $i$, let
+$r_i$ be the number of its slices in mode $i$, and let $U_i\subseteq\C^q$
+annihilate their distinguished coefficient vectors under the bilinear
+pairing $\sum_j x_jy_j$. Then $\codim U_i\leq r_i$. Evaluating the
+decomposition on $U_1\times\cdots\times U_k$ kills every slice, so
+\[
+ \sum_{j=1}^q u_{1,j}\cdots u_{k,j}=0
+       \qquad (u_i\in U_i).
+\]
+Thus the span of $U_1*\cdots*U_{k-1}$ lies in $U_k^\perp$, whose
+dimension is $\codim U_k$. By \eqref{eq:iterated-product},
+\[
+ q-\sum_{i<k}\codim U_i\leq\codim U_k,
+       \qquad q\leq\sum_i\codim U_i\leq\sum_i r_i.
+\]
+The defining expression for $\Delta_q$ is a sum of $q$ slices, proving
+equality. Monotonicity of slice rank under independent linear maps
+now gives $q=\sr(\Delta_q)\leq\sr(T)$ for every diagonal restriction
+of $T$, and hence $Q(T)\leq\sr(T)$.
+\end{proof}
+
+\begin{proposition}\label{prop:upper}
+For all $N\geq1$,
+\[
+ Q(D_{\mathbf d}^{\boxtimes N})\leq
+ \sr(D_{\mathbf d}^{\boxtimes N})\leq k\exp(N\HH(p)).
+\]
+\end{proposition}
+\begin{proof}
+For a local word $w=(w_1,\ldots,w_N)\in\{1,\ldots,n\}^N$, set
+\[
+ s(w)=-\sum_{t=1}^N\log p_{w_t},\qquad
+ P(w)=\prod_{t=1}^N p_{w_t}=e^{-s(w)},\qquad
+ L_N=\{w:s(w)\leq N\HH(p)\}.
+\]
+All $p_a$ are positive. Since $\sum_wP(w)=1$ and every $w\in L_N$
+has $P(w)\geq e^{-N\HH(p)}$, we have
+\begin{equation}\label{eq:score-count}
+ |L_N|\leq e^{N\HH(p)}.
+\end{equation}
+For every support edge $(w^{(1)},\ldots,w^{(k)})$ of the full tensor
+power, each column has multiplicities $\mathbf d$. Therefore
+\[
+ \sum_{i=1}^k s(w^{(i)})
+    =-N\sum_{a=1}^n d_a\log p_a=Nk\HH(p).
+\]
+At least one local word belongs to $L_N$. Assign the edge to the least
+such mode. For each $i$ and $w\in L_N$, collect all assigned terms
+whose $i$th word is $w$ into one slice with distinguished factor $e_w$.
+This partitions the entire support and yields at most $k|L_N|$ slices.
+Apply Lemma~\ref{lem:diagonal-slice} and \eqref{eq:score-count}.
+\end{proof}
+
+Taking $N$th roots in Proposition~\ref{prop:upper} and using
+Lemma~\ref{lem:limits} gives $\Qt(D_{\mathbf d})\leq e^{\HH(p)}$.
+Together with the coordinate-restriction lower bound
+\eqref{eq:monomial-lower} and $\Qmt\leq\Qt$, this proves
+Theorem~\ref{thm:main} for $k\geq3$. The two-factor case was handled
+in Section~\ref{sec:limits}. Every restriction in the argument retains
+the same $k$ factors.
