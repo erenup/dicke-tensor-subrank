@@ -2,28 +2,28 @@
 
 Start with the three-mode tensor
 
-$$
+```math
 D=e_1\otimes e_1\otimes e_2+
   e_1\otimes e_2\otimes e_1+
   e_2\otimes e_1\otimes e_1.
-$$
+```
 
 Its subrank asks how large a diagonal tensor
-$\Delta_q=\sum_{j=1}^q e_j\otimes e_j\otimes e_j$
+$`\Delta_q=\sum_{j=1}^q e_j\otimes e_j\otimes e_j`$
 can be obtained by independent linear maps on its three factors.
 The grouped power $D^{\boxtimes N}$ still has three factors;
 each has dimension $2^N$. The theorem identifies the exponential
 growth rate of the largest diagonal:
 
-$$
+```math
 \widetilde Q(D)=2^{H_2(2/3,1/3)}
   =\frac{3}{2^{2/3}}\approx1.8899.
-$$
+```
 
 This is a limit of $N$th roots, rather than a formula for the
 integer subrank at each finite power. For every positive multiplicity
 tuple $\mathbf d$ with at least two symbols, the same result gives
-$\exp H(\mathbf d/k)$, with $k=\sum_a d_a$ separate factors.
+$\exp H(\mathbf d/k)$, with $`k=\sum_a d_a`$ separate factors.
 The lower bound uses coordinate restrictions, which keep selected
 local basis vectors and then allow independent relabelling and rescaling.
 
@@ -38,10 +38,10 @@ rate uniform over multiplicity tuples.
 | --- | --- |
 | $k$ | Number of separate tensor factors |
 | $N$ | Number of copies in the grouped power |
-| $Q$, $Q_{\mathrm M}$ | Ordinary and coordinate-restriction subrank |
-| $p_a=d_a/k$ | Symbol distribution |
-| $H(p)$, $H_2(p)$ | Shannon entropy in natural and base-two logarithms |
-| $F_X(V)$ | $H(X\mid X\bmod V)$, with the coset label as conditioning variable |
+| $Q$, $`Q_{\mathrm M}`$ | Ordinary and coordinate-restriction subrank |
+| $`p_a=d_a/k`$ | Symbol distribution |
+| $H(p)$, $`H_2(p)`$ | Shannon entropy in natural and base-two logarithms |
+| $`F_X(V)`$ | $H(X\mid X\bmod V)$, with the coset label as conditioning variable |
 
 ## Symmetry, entropy, and selection
 
@@ -50,9 +50,9 @@ in a positive finite-dimensional rational vector space $E$.
 If its law is invariant under an irreducible rational linear group
 action, then every rational subspace $V\leq E$ satisfies
 
-$$
+```math
 H(X\mid X\bmod V)\leq\frac{\dim V}{\dim E}H(X).
-$$
+```
 
 Supermodularity and irreducibility prove this bound. Applied to the
 permutation-symmetric conditional distributions of a Dicke support,

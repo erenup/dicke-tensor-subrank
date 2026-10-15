@@ -12,30 +12,30 @@ D_{(2,1)}=e_1\otimes e_1\otimes e_2
 
 Its only nonzero entries are the three arrangements of two first symbols and
 one second symbol. Subrank asks how large a diagonal unit tensor
-$\Delta_q=\sum_{j=1}^q e_j^{\otimes k}$ can be extracted by independent
+$`\Delta_q=\sum_{j=1}^q e_j^{\otimes k}`$ can be extracted by independent
 complex-linear maps on the $k$ factors. The target diagonal is a different
 tensor from the original example.
 
 | Symbol | Meaning | Example |
 | --- | --- | --- |
 | $n$ | Symbols, or dimension of each original factor | $2$ |
-| $\mathbf d$, $k=\sum_a d_a$ | Multiplicities and number of original factors | $(2,1)$, $3$ |
+| $\mathbf d$, $`k=\sum_a d_a`$ | Multiplicities and number of original factors | $(2,1)$, $3$ |
 | $N$ | Copies of the whole tensor | Any positive integer |
-| $q_N$ | Subrank of the grouped $N$th power | An integer |
+| $`q_N`$ | Subrank of the grouped $N$th power | An integer |
 | $p=\mathbf d/k$ | Symbol frequencies | $(2/3,1/3)$ |
 
 Taking $N$ copies keeps $k$ factors by grouping corresponding positions only.
 The formula identifies their diagonal-growth rate. In this example,
-$H_2(2/3,1/3)\approx0.9183$ and the growth base is
-$2^{H_2(2/3,1/3)}=3/2^{2/3}\approx1.8899$. It means
-$\log_2 q_N=NH_2(p)+o(N)$ for this fixed tuple; it does not give an exact
-finite-power value $q_N=(1.8899)^N$.
+$`H_2(2/3,1/3)\approx0.9183`$ and the growth base is
+$`2^{H_2(2/3,1/3)}=3/2^{2/3}\approx1.8899`$. It means
+$`\log_2 q_N=NH_2(p)+o(N)`$ for this fixed tuple; it does not give an exact
+finite-power value $`q_N=(1.8899)^N`$.
 
 ## Main theorem and what it settles
 
 For every integer $n\geq2$ and every positive integer tuple
-$\mathbf d=(d_1,\ldots,d_n)$, put $k=\sum_a d_a$ and $p_a=d_a/k$.
-Over $\mathbb C$, let $D_{\mathbf d}\in(\mathbb C^n)^{\otimes k}$ be the sum of
+$`\mathbf d=(d_1,\ldots,d_n)`$, put $`k=\sum_a d_a`$ and $`p_a=d_a/k`$.
+Over $\mathbb C$, let $`D_{\mathbf d}\in(\mathbb C^n)^{\otimes k}`$ be the sum of
 all basis tensors whose symbol multiplicities are $\mathbf d$. Then
 
 ```math
@@ -44,9 +44,9 @@ all basis tensors whose symbol multiplicities are $\mathbf d$. Then
  =\exp H(p)=2^{H_2(p)}.
 ```
 
-Here $H(p)=-\sum_a p_a\log p_a$ uses natural logarithms and $H_2$ uses base two.
+Here $`H(p)=-\sum_a p_a\log p_a`$ uses natural logarithms and $`H_2`$ uses base two.
 The quantity $\widetilde Q$ allows arbitrary independent complex-linear maps.
-The quantity $\widetilde Q_{\mathrm M}$ uses coordinate deletion followed by
+The quantity $`\widetilde Q_{\mathrm M}`$ uses coordinate deletion followed by
 independent relabelling and nonzero rescaling in each factor. Both are the
 limits of the corresponding subranks of $N$th tensor powers, raised to $1/N$.
 All $k$ original modes remain separate; powers group corresponding modes only.
@@ -77,7 +77,7 @@ H_2(X\mid X\bmod V)\leq\frac{\dim V}{\dim E}H_2(X).
 ```
 
 The coset label $X\bmod V$ records what remains after quotienting by $V$.
-Supermodularity of $V\mapsto H_2(X\mid X\bmod V)$ and irreducibility prove
+Supermodularity of $`V\mapsto H_2(X\mid X\bmod V)`$ and irreducibility prove
 the inequality. Applied to permutation-symmetric conditional distributions,
 it controls collision counts. Rank-dependent hashing, average-free sets and
 isolation against the **full original support** then yield coordinate
