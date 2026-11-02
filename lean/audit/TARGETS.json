@@ -1,0 +1,13 @@
+{
+  "TR28.PartnerPositionCount": "TR28.partner_position_count",
+  "TR28.PartnerHistogramCount": "TR28.partner_histogram_count",
+  "TR28.BalancedPartnerCount": "TR28.balanced_partner_count",
+  "TR28.ExactSpanPartnerSubset": "TR28.exact_span_partner_subset",
+  "TR28.ExactSpanPartnerBound": "TR28.exact_span_partner_bound",
+  "TR28.FiniteFieldKernelCount": "TR28.finite_field_kernel_count",
+  "TR28.IsolationCountTheorem": "TR28.isolation_count",
+  "TR28.ExactCoordinateExtraction": "TR28.exact_coordinate_extraction",
+  "TR28.UniformIsolationExtraction": "TR28.uniform_isolation_extraction",
+  "TR28.InvariantSupermodularDensity": "TR28.invariant_supermodular_density",
+  "TR28.CoreTheorems": "TR28.core_theorems"
+}

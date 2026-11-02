@@ -1,0 +1,229 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{a4paper,total={170mm,257mm},left=20mm,top=20mm}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,array,xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={The Entropy Law for the Asymptotic Subrank of Dicke Tensors},pdfauthor={Wenqi Zhu; Chunlin Liu; Kai Zou; Ping Nie}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\F}{\mathbb F}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Qmon}{Q_{\mathrm M}}
+\newcommand{\Qt}{\widetilde Q}
+\newcommand{\Qmt}{\widetilde Q_{\mathrm M}}
+\DeclareMathOperator{\HH}{H}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\sr}{sr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\spanQ}{span_{\Q}}
+\title{The Entropy Law for the Asymptotic Subrank of Dicke Tensors}
+\author{%
+Wenqi Zhu\thanks{Corresponding author.}\\
+{\small Mathematical Institute, Woodstock Road, University of Oxford,}\\
+{\small Oxford, UK, OX2 6GG}\\
+{\small\texttt{wenqi.zhu@maths.ox.ac.uk}}\\[1ex]
+Chunlin Liu\\
+{\small School of Mathematical Sciences,}\\
+{\small University of Science and Technology of China, Hefei, China}\\[1ex]
+Kai Zou\\
+{\small Mathematical \& Engineering Sciences, King's College London, UK}\\
+{\small\texttt{kz@netmind.ai}}\\[1ex]
+Ping Nie\\
+{\small David R. Cheriton School of Computer Science, University of Waterloo}\\
+{\small\texttt{ping.nie@uwaterloo.ca}}}
+\date{}
+
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\emergencystretch}{2em}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $\mathbf d=(d_1,\ldots,d_n)$ be any tuple of positive integers,
+where $n\geq2$, and put $k=\sum_a d_a$ and $p_a=d_a/k$.
+The Dicke tensor $D_{\mathbf d}\in(\C^n)^{\otimes k}$ is the sum of
+all basis tensors with these multiplicities. We prove that its ordinary
+asymptotic subrank and its asymptotic subrank under coordinate restrictions
+both equal $\exp\HH(p)$, where $\HH$ is Shannon entropy with natural
+logarithms. All $k$ tensor factors remain separate. This proves the
+all-multiplicity entropy formula for Dicke tensors. The lower bound
+combines rank-dependent hashing and global isolation with an entropy
+inequality for finite distributions invariant under an irreducible
+linear action. A full joint-type class supplies the candidates, while
+every edge of the original support is included in the collision count.
+A slice cover gives the finite-power upper bound
+$Q(D_{\mathbf d}^{\boxtimes N})\leq k\exp(N\HH(p))$ for every
+$N\geq1$, including arbitrary complex-linear restriction maps.
+The proof includes the average-free construction, the isolation argument,
+and the passage from an unbounded prime-indexed subsequence to the
+asymptotic limit. Finite exact checks accompany the written proof.
+\end{abstract}
+
+\section{The main theorem}\label{sec:main}
+
+Fix integers $n\geq2$ and $d_1,\ldots,d_n\geq1$, and set
+\[
+ k=\sum_{a=1}^n d_a,\qquad
+ p_a=\frac{d_a}{k},\qquad
+ \HH(p)=-\sum_{a=1}^n p_a\log p_a.
+\]
+All logarithms are natural unless a base is indicated; in particular,
+$\HH_2(p)=\HH(p)/\log2$. Write $e_1,\ldots,e_n$ for the standard
+basis of $\C^n$. Let $\mathcal W_{\mathbf d}$ be the set of words
+$(a_1,\ldots,a_k)\in\{1,\ldots,n\}^k$ in which symbol $a$ occurs
+exactly $d_a$ times. The \emph{Dicke tensor} is
+\begin{equation}\label{eq:dicke}
+ D_{\mathbf d}
+   =\sum_{(a_1,\ldots,a_k)\in\mathcal W_{\mathbf d}}
+        e_{a_1}\otimes\cdots\otimes e_{a_k}.
+\end{equation}
+Under the usual symmetric-tensor interpretation it corresponds to a
+nonzero scalar multiple of the monomial $x_1^{d_1}\cdots x_n^{d_n}$.
+This normalization does not affect the quantities below.
+
+For a nonzero $k$-tensor $T\in V_1\otimes\cdots\otimes V_k$, its
+\emph{subrank} $Q(T)$ is the largest integer $q$ for which linear maps
+$A_i:V_i\to\C^q$, chosen independently for the $k$ factors, satisfy
+\[
+ (A_1\otimes\cdots\otimes A_k)T
+   =\Delta_q:=\sum_{j=1}^q e_j\otimes\cdots\otimes e_j.
+\]
+Relative to specified bases of the $V_i$, write $\Qmon(T)$ for the
+largest such diagonal obtainable by deleting local basis vectors and
+then independently relabelling and rescaling the retained basis vectors.
+This is the \emph{coordinate, or monomial, restriction} convention.
+In particular, $\Qmon(T)\leq Q(T)$. For the all-one tensor
+\eqref{eq:dicke}, it amounts to finding an induced matching in its support.
+
+The grouped power $T^{\boxtimes N}$ is the ordinary $N$th tensor power
+with corresponding factors collected together:
+\[
+ T^{\boxtimes N}\in V_1^{\otimes N}\otimes\cdots\otimes V_k^{\otimes N}.
+\]
+There are still exactly $k$ factors. Define
+\[
+ \Qt(T)=\lim_{N\to\infty}Q(T^{\boxtimes N})^{1/N},\qquad
+ \Qmt(T)=\lim_{N\to\infty}\Qmon(T^{\boxtimes N})^{1/N}
+\]
+when these limits exist. Their existence for $D_{\mathbf d}$ is proved
+in Lemma~\ref{lem:limits}.
+
+\begin{theorem}\label{thm:main}
+For every $n\geq2$ and every tuple $\mathbf d\in\mathbb Z_{>0}^n$,
+over $\C$ and with all $k=\sum_a d_a$ original factors separate,
+\begin{equation}\label{eq:main}
+ \Qmt(D_{\mathbf d})=\Qt(D_{\mathbf d})
+       =\exp\HH(\mathbf d/k)=2^{\HH_2(\mathbf d/k)}.
+\end{equation}
+Moreover, for every integer $N\geq1$,
+\begin{equation}\label{eq:finite-upper}
+ Q(D_{\mathbf d}^{\boxtimes N})\leq k\exp\bigl(N\HH(\mathbf d/k)\bigr).
+\end{equation}
+\end{theorem}
+
+The ordinary restriction maps in the theorem need not be symmetric or
+monomial. The assertion is pointwise in each fixed multiplicity tuple;
+it supplies neither a convergence rate uniform in $\mathbf d$ nor an
+efficiency bound for finding the restrictions. It makes no claim that
+finite subrank equals the entropy expression, and concerns neither
+tensor rank nor border rank. Merging different original modes is not
+part of the statement or proof.
+
+For example, when all $d_a$ are equal, the entropy is $\log n$, so
+both asymptotic subranks equal $n$. For $\mathbf d=(k-1,1)$ the value is
+\[
+ \exp\HH\bigl((k-1)/k,1/k\bigr)
+   =\frac{k}{(k-1)^{(k-1)/k}}.
+\]
+These are specializations of the same formula, with the same separation
+of the original tensor factors.
+
+\input{sections/history}
+
+\section{Powers, limits and the two-factor case}\label{sec:limits}
+
+Each basis vector in a factor of $D_{\mathbf d}^{\boxtimes N}$ is
+indexed by a word of length $N$. A support edge is a $k$-tuple of local
+words such that each column has multiplicities $\mathbf d$. A set of
+edges is an \emph{induced matching} if they have pairwise distinct local
+words in every factor and keeping just their local words leaves no
+other support edge. A coordinate restriction to such a set, followed
+by relabelling, gives a diagonal of that cardinality.
+
+\begin{lemma}\label{lem:limits}
+For $R=Q$ and for $R=\Qmon$, the limit
+$\lim_{N\to\infty}N^{-1}\log R(D_{\mathbf d}^{\boxtimes N})$
+exists and equals
+$\sup_{N\geq1}N^{-1}\log R(D_{\mathbf d}^{\boxtimes N})$.
+Consequently, a lower bound along any unbounded subsequence also
+bounds this limit from below.
+\end{lemma}
+\begin{proof}
+Keeping a single nonzero entry gives $R(D_{\mathbf d}^{\boxtimes N})\geq1$.
+Tensoring two restrictions, and identifying a pair of diagonal output
+indices with one index, gives
+\begin{equation}\label{eq:supermultiplicativity}
+ R(D_{\mathbf d}^{\boxtimes(N+L)})
+   \geq R(D_{\mathbf d}^{\boxtimes N})R(D_{\mathbf d}^{\boxtimes L}).
+\end{equation}
+The flattening along one factor has rank at most $n^N$, cannot increase
+under restriction, and has rank $q$ on $\Delta_q$. Thus $R\leq n^N$.
+Put $a_N=\log R(D_{\mathbf d}^{\boxtimes N})$ and $a_0=0$.
+Then $0\leq a_N\leq N\log n$ and $(a_N)$ is superadditive.
+Fix $m\geq1$ and write $N=hm+r$ with $0\leq r<m$. Superadditivity
+gives $a_N\geq h a_m+a_r\geq h a_m$, whence
+\[
+ \liminf_{N\to\infty}\frac{a_N}{N}\geq\frac{a_m}{m}.
+\]
+Take the supremum over $m$. The reverse upper bound is part of the
+definition of that supremum, proving the assertion.
+\end{proof}
+
+If $k=2$, positivity and $n\geq2$ force $n=2$ and $\mathbf d=(1,1)$.
+The tensor $D_{(1,1)}=e_1\otimes e_2+e_2\otimes e_1$ is a permutation
+matrix. Its powers have $\Qmon=Q=2^N$, so \eqref{eq:main} holds.
+Henceforth we may assume $k\geq3$ in the lower-bound construction.
+
+\input{sections/entropy}
+\input{sections/hashing}
+\input{sections/upper}
+\input{sections/verification}
+
+
+\section*{Statements and Declarations}
+\paragraph{Funding.}
+The research of Wenqi Zhu was supported by the Engineering and Physical
+Sciences Research Council under grant EP/Y028872/1, \emph{Mathematical
+Foundations of Intelligence: An ``Erlangen Programme'' for AI}.
+
+\paragraph{Competing interests.}
+The authors have no competing interests to declare that are relevant to
+the content of this article.
+
+\paragraph{Data availability.}
+The exact verification scripts and Lean~4 files accompanying
+this paper are available at
+\url{https://github.com/erenup/dicke-tensor-subrank}.
+
+\paragraph{Use of generative AI and AI-assisted technologies.}
+During the preparation of this work, the authors used AI tools (Codex and Claude Code) to generate candidate constructions and code, perform computations, draft mathematical arguments, and improve the readability of the text. After using these
+tools, the authors reviewed and edited the content as needed and take full
+responsibility for the content of the publication. Finite exact checks (Section~\ref{sec:verification}) and a Lean~4 formalization of ten finite algebraic and combinatorial ingredients of the proof, with its scope stated in the repository above, accompany the written proof.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}

@@ -1,0 +1,97 @@
+\section{Exact finite verification}\label{sec:verification}
+
+The proof above establishes the theorem for every multiplicity tuple.
+Two accompanying standard-library Python programs provide finite exact
+checks of its entropy and hashing interfaces. They use integer and
+rational arithmetic, explicit failure exits and negative controls;
+no floating-point comparison or numerical tolerance enters the checks.
+The finite computations are supporting regressions, not premises of
+the universal theorem or an extrapolation to larger multiplicities.
+
+\subsection{Collision subspaces and the entropy inequality}
+
+The program \texttt{check\_entropy.py} enumerates all nonzero
+difference-generated collision subspaces for one fixed shared mode
+in the five supports shown in Table~\ref{tab:entropy-checks}. The
+other modes are equivalent by permutation symmetry. It forms the
+quotient fibers and independently checks their cardinalities by exact
+difference membership. The zero subspace has the immediate zero-entropy
+bound and is omitted.
+
+For a checked support of size $M$, let
+$A=\prod_{s\in S}|C_V(s)|$ and $r=\dim V$. Rather than approximate
+logarithms in Lemma~\ref{lem:fiber-entropy}, the program checks the
+equivalent integer inequality
+\begin{equation}\label{eq:integer-entropy-check}
+ A^{k(k-2)}k^{kMr}
+    \leq M^{kMr}\left(\prod_{a=1}^n d_a^{d_a}\right)^{Mr}.
+\end{equation}
+Indeed, $\HH(p)=\log k-k^{-1}\sum_a d_a\log d_a$, and multiplying
+$M^{-1}\log A\leq r(\log M-\HH(p))/(k-2)$ by $Mk(k-2)$ and
+exponentiating gives \eqref{eq:integer-entropy-check}.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lrr}
+\toprule
+Multiplicities $\mathbf d$ & Support size $M$ & Nonzero collision subspaces\\
+\midrule
+$(1,1,1)$ & 6 & 1\\
+$(2,1,1)$ & 12 & 7\\
+$(1,1,1,1)$ & 24 & 13\\
+$(2,2,1)$ & 30 & 191\\
+$(3,1,1)$ & 20 & 176\\
+\bottomrule
+\end{tabular}
+\caption{Exact finite checks of the conditional entropy bound.}
+\label{tab:entropy-checks}
+\end{table}
+
+Each case includes a negative control that decreases the full collision
+space's claimed dimension by one while leaving its fibers fixed. The
+same inequality validator must reject the resulting false claim.
+All five controls reject. This tests selected dimensions and supports;
+the invariant-entropy argument, rather than this enumeration, proves
+the all-subspace statement.
+
+\subsection{Hashing and isolation in the original support}
+
+The program \texttt{check\_hashing.py} checks 405 rank-one collision-subspace
+cases, counting the shared mode as part of the case, across multiplicities
+\[
+ (2,1),\ (1,1,1),\ (2,2),\ (2,1,1),\ (1,1,1,1),\ (3,1,1),\ (2,2,1).
+\]
+It also exhausts a complete small hashing experiment. Take
+\[
+ S=\{(-1,-1,2),(-1,2,-1),(2,-1,-1)\},\quad
+ N=3,\quad q=11,\quad B=\{0,1,3\}.
+\]
+There are $11^5=161{,}051$ assignments of the common hash vector and
+two offsets, 27 original support edges, six candidates of uniform joint
+type, and 54 ordered candidate/collider pairs sharing a local word.
+For every assignment, the program checks equal hashes on surviving
+edges, the $X-Y$ isolation inequality, and that retaining the isolated
+candidates' vertices leaves exactly those edges in the \emph{full}
+original support.
+
+Each edge survives in 3,993 assignments and each listed pair in 363,
+matching \eqref{eq:single-survival} and \eqref{eq:pair-survival} exactly.
+The totals are $\sum X=23{,}958$ and $\sum Y=19{,}602$, so the
+average of $X-Y$ is positive. The largest isolated matching obtained
+has two edges. These small numbers test the mechanism, not its
+asymptotic rate.
+
+Three further controls reject: a two-point distribution on a line in
+dimension two refutes omission of invariance from the entropy-slope
+bound; replacing $B$ by $\{0,1,2\}$ violates average-freeness through
+$0+2=2\cdot1$; and keeping only candidate edges $(0,0)$ and $(1,1)$
+while the original support also contains $(0,1)$ exposes a hidden mixed
+edge. The first is a counterexample to dropping an assumption, not an
+algorithm for detecting all invariant distributions.
+
+Both checkers pass with byte-identical mathematical output under normal
+Python and optimized Python (\texttt{-O}); all eight negative controls
+reject in both modes. Reproduction instructions and exact input/output
+digests accompany the manuscript. These computations make no claim about
+a uniform convergence rate, efficient extraction of asymptotic restrictions,
+or formal proof-assistant certification.

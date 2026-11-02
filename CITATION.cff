@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+message: "Please cite the manuscript using the preferred citation below."
+type: software
+title: "The Entropy Law for the Asymptotic Subrank of Dicke Tensors"
+authors:
+  - given-names: "Wenqi"
+    family-names: "Zhu"
+    affiliation: "Mathematical Institute, Woodstock Road, University of Oxford, Oxford, UK, OX2 6GG"
+    email: "wenqi.zhu@maths.ox.ac.uk"
+  - given-names: "Chunlin"
+    family-names: "Liu"
+    affiliation: "School of Mathematical Sciences, University of Science and Technology of China, Hefei, China"
+  - given-names: "Kai"
+    family-names: "Zou"
+    affiliation: "Mathematical & Engineering Sciences, King's College London, UK"
+    email: "kz@netmind.ai"
+  - given-names: "Ping"
+    family-names: "Nie"
+    affiliation: "David R. Cheriton School of Computer Science, University of Waterloo"
+    email: "ping.nie@uwaterloo.ca"
+license: MIT
+repository-code: "https://github.com/erenup/dicke-tensor-subrank"
+abstract: >-
+  For every tuple of at least two positive multiplicities, the ordinary
+  asymptotic subrank of the Dicke tensor over the complex numbers and its
+  asymptotic subrank under coordinate restrictions both equal the
+  exponential of the Shannon entropy of the symbol frequencies, with all
+  original tensor factors kept separate. Includes the paper, ten universal
+  finite algebraic and combinatorial targets in Lean, and exact supporting
+  checks. Files outside paper/ are licensed under MIT; files in paper/,
+  including the manuscript source and PDF, are licensed under CC BY-SA 4.0.
+keywords:
+  - Dicke tensors
+  - asymptotic subrank
+  - entropy
+  - coordinate restrictions
+preferred-citation:
+  type: unpublished
+  license: CC-BY-SA-4.0
+  title: "The Entropy Law for the Asymptotic Subrank of Dicke Tensors"
+  authors:
+    - given-names: "Wenqi"
+      family-names: "Zhu"
+      affiliation: "Mathematical Institute, Woodstock Road, University of Oxford, Oxford, UK, OX2 6GG"
+      email: "wenqi.zhu@maths.ox.ac.uk"
+    - given-names: "Chunlin"
+      family-names: "Liu"
+      affiliation: "School of Mathematical Sciences, University of Science and Technology of China, Hefei, China"
+    - given-names: "Kai"
+      family-names: "Zou"
+      affiliation: "Mathematical & Engineering Sciences, King's College London, UK"
+      email: "kz@netmind.ai"
+    - given-names: "Ping"
+      family-names: "Nie"
+      affiliation: "David R. Cheriton School of Computer Science, University of Waterloo"
+      email: "ping.nie@uwaterloo.ca"

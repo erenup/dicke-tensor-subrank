@@ -1,0 +1,435 @@
+{
+  "schema_version": 2,
+  "paper": "paper/main.tex",
+  "paper_title": "The Entropy Law for the Asymptotic Subrank of Dicke Tensors",
+  "scope": "Every numbered theorem, proposition, lemma, corollary, definition and remark of the paper is indexed in TeX order, together with the title of every numbered section. Supporting equation and section anchors account for the finite Lean targets and the exact checks. No complete numbered paper result is claimed to be formalized in Lean.",
+  "sections": [
+    {
+      "number": 1,
+      "title": "The main theorem",
+      "source": "paper/main.tex"
+    },
+    {
+      "number": 2,
+      "title": "Relation to earlier work",
+      "source": "paper/sections/history.tex"
+    },
+    {
+      "number": 3,
+      "title": "Powers, limits and the two-factor case",
+      "source": "paper/main.tex"
+    },
+    {
+      "number": 4,
+      "title": "An entropy inequality from irreducible invariance",
+      "source": "paper/sections/entropy.tex"
+    },
+    {
+      "number": 5,
+      "title": "Permutation fibers and counts over the full support",
+      "source": "paper/sections/entropy.tex"
+    },
+    {
+      "number": 6,
+      "title": "Large average-free sets",
+      "source": "paper/sections/hashing.tex"
+    },
+    {
+      "number": 7,
+      "title": "Hashes and exact survival probabilities",
+      "source": "paper/sections/hashing.tex"
+    },
+    {
+      "number": 8,
+      "title": "Isolation against the full original support",
+      "source": "paper/sections/hashing.tex"
+    },
+    {
+      "number": 9,
+      "title": "The entropy lower bound",
+      "source": "paper/sections/hashing.tex"
+    },
+    {
+      "number": 10,
+      "title": "The upper bound for arbitrary linear restrictions",
+      "source": "paper/sections/upper.tex"
+    },
+    {
+      "number": 11,
+      "title": "Exact finite verification",
+      "source": "paper/sections/verification.tex"
+    }
+  ],
+  "lean_targets": [
+    {
+      "id": "partner_position_count",
+      "declaration": "TR28.partner_position_count",
+      "source": "lean/TR28/Counting.lean",
+      "proposition": "TR28.PartnerPositionCount",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "For every finite alphabet, relation, length and word, the number of full-support partners is the product of the positionwise fiber cardinalities."
+    },
+    {
+      "id": "partner_histogram_count",
+      "declaration": "TR28.partner_histogram_count",
+      "source": "lean/TR28/Counting.lean",
+      "proposition": "TR28.PartnerHistogramCount",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "The same full-support partner count is regrouped by the literal joint histogram of the first word."
+    },
+    {
+      "id": "balanced_partner_count",
+      "declaration": "TR28.balanced_partner_count",
+      "source": "lean/TR28/Counting.lean",
+      "proposition": "TR28.BalancedPartnerCount",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "For a balanced first word, the full-support partner count is the product of fiber cardinalities to the common multiplicity. The second word has no type constraint."
+    },
+    {
+      "id": "exact_span_partner_subset",
+      "declaration": "TR28.exact_span_partner_subset",
+      "source": "lean/TR28/Counting.lean",
+      "proposition": "TR28.ExactSpanPartnerSubset",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "Partners with exact rational difference span V form a subset of all partners whose positionwise differences lie in V."
+    },
+    {
+      "id": "exact_span_partner_bound",
+      "declaration": "TR28.exact_span_partner_bound",
+      "source": "lean/TR28/Counting.lean",
+      "proposition": "TR28.ExactSpanPartnerBound",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "For a balanced first word, the exact-span partner count is at most the full coset-fiber product."
+    },
+    {
+      "id": "finite_field_kernel_count",
+      "declaration": "TR28.finite_field_kernel_count",
+      "source": "lean/TR28/LinearCount.lean",
+      "proposition": "TR28.FiniteFieldKernelCount",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "For every linear map from K^N to K^r over a finite field, the actual kernel has cardinality |K|^(N-rank(A)). This does not identify the rank of a reduced integer hash matrix."
+    },
+    {
+      "id": "isolation_count",
+      "declaration": "TR28.isolation_count",
+      "source": "lean/TR28/Isolation.lean",
+      "proposition": "TR28.IsolationCountTheorem",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "The surviving candidate count is at most the number of computed isolated candidates plus ordered collisions against all surviving original edges."
+    },
+    {
+      "id": "exact_coordinate_extraction",
+      "declaration": "TR28.exact_coordinate_extraction",
+      "source": "lean/TR28/Isolation.lean",
+      "proposition": "TR28.ExactCoordinateExtraction",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "For a positive number of modes, restriction of the full original support to the coordinate images of the computed isolated candidates gives exactly those candidates, with every coordinate map injective."
+    },
+    {
+      "id": "uniform_isolation_extraction",
+      "declaration": "TR28.uniform_isolation_extraction",
+      "source": "lean/TR28/Isolation.lean",
+      "proposition": "TR28.UniformIsolationExtraction",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "For a nonempty finite uniform sample space and a positive number of modes, one sample gives an exact coordinate matching whose size satisfies the cross-multiplied bound by the mean of X-Y."
+    },
+    {
+      "id": "invariant_supermodular_density",
+      "declaration": "TR28.invariant_supermodular_density",
+      "source": "lean/TR28/Density.lean",
+      "proposition": "TR28.InvariantSupermodularDensity",
+      "proposition_source": "lean/TR28/Statement.lean",
+      "scope": "For a finite-range real function on rational subspaces with F(0)=0, supermodularity, invariance and an irreducible family of linear automorphisms, F(V) dim(E) <= dim(V) F(E). Entropy and its hypotheses are not defined or proved here."
+    }
+  ],
+  "exact_checks": [
+    {
+      "id": "entropy_collision_subspaces",
+      "source": "verification/core/verification/check_entropy.py",
+      "function": "check",
+      "scope": "For each of (1,1,1), (2,1,1), (1,1,1,1), (2,2,1), (3,1,1), all nonzero difference-generated collision subspaces in one fixed shared mode are enumerated. Fiber sizes and the integer form of the entropy bound are checked exactly; lowering the full-space dimension is rejected.",
+      "limitation": "These five finite supports do not prove the inequality for all multiplicities, all invariant distributions or arbitrary rational subspaces."
+    },
+    {
+      "id": "rank_one_fibers",
+      "source": "verification/core/verification/check_hashing.py",
+      "function": "check_fibers",
+      "scope": "The rank-one fiber inequality is checked in 405 cases, with shared mode counted, across (2,1), (1,1,1), (2,2), (2,1,1), (1,1,1,1), (3,1,1), (2,2,1).",
+      "limitation": "Only the specified rank-one cases are checked; the universal entropy argument remains in the paper."
+    },
+    {
+      "id": "hash_exhaustion",
+      "source": "verification/core/verification/check_hashing.py",
+      "function": "test_hash",
+      "scope": "All 161051 hash assignments for S={(-1,-1,2),(-1,2,-1),(2,-1,-1)}, N=3, q=11 and B={0,1,3} are enumerated. The 27 original edges, six candidates, 54 ordered pairs, single and pair survival counts, isolation inequality and full-support extraction are checked.",
+      "limitation": "One finite experiment does not prove uniform modular rank transfer, general hash probabilities, the all-multiplicity theorem or an asymptotic rate."
+    },
+    {
+      "id": "average_free_instance",
+      "source": "verification/core/verification/check_hashing.py",
+      "function": "validate_average_free",
+      "scope": "The set B={0,1,3} modulo 11 is checked for the L=2 average-free condition; B={0,1,2} is a rejected control.",
+      "limitation": "This particular set does not prove existence, the sphere construction or the size estimate for every sufficiently large q and every fixed L."
+    }
+  ],
+  "numbered_results": [
+    {
+      "label": "thm:main",
+      "environment": "theorem",
+      "number": "1.1",
+      "section": 1,
+      "source": "paper/main.tex",
+      "title": "Entropy law and finite-power upper bound",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "The universal conclusion has a written proof. Finite algebraic components and supporting computations are indexed under the supporting anchors.",
+      "paper_only": "For every n>=2 and every positive multiplicity tuple over C, with all k original modes separate, both the ordinary and coordinate-restriction asymptotic subranks equal exp(H(d/k)); the finite upper bound holds for every N>=1. The complete theorem is not stated in Lean."
+    },
+    {
+      "label": "lem:limits",
+      "environment": "lemma",
+      "number": "3.1",
+      "section": 3,
+      "source": "paper/main.tex",
+      "title": "Existence and subsequence property of the subrank limits",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No direct Lean declaration or exact check is assigned.",
+      "paper_only": "Supermultiplicativity, the flattening bound, the superadditive limit argument and transfer from an unbounded subsequence are proved in the paper."
+    },
+    {
+      "label": "lem:supermodular",
+      "environment": "lemma",
+      "number": "4.1",
+      "section": 4,
+      "source": "paper/sections/entropy.tex",
+      "title": "Supermodularity",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "Supermodularity is an explicit hypothesis of the abstract Lean density target, not its conclusion.",
+      "paper_only": "Shannon entropy, conditional mutual information, quotient-entropy identification and supermodularity of the actual functional F_X are proved in the paper."
+    },
+    {
+      "label": "lem:invariant",
+      "environment": "lemma",
+      "number": "4.2",
+      "section": 4,
+      "source": "paper/sections/entropy.tex",
+      "title": "Irreducible invariance",
+      "coverage": "partial_lean",
+      "lean_targets": [
+        "invariant_supermodular_density"
+      ],
+      "exact_checks": [],
+      "covered": "Lean proves the algebraic maximizer argument for an abstract finite-range supermodular invariant function on the rational submodule lattice, including existence of the maximum slope and the dimension formula.",
+      "paper_only": "Identifying F with quotient entropy, its finite range, F(0)=0, its value at E, its supermodularity and its invariance for the stated random variable remain in the paper. Lean does not define Shannon entropy."
+    },
+    {
+      "label": "lem:fiber-entropy",
+      "environment": "lemma",
+      "number": "5.1",
+      "section": 5,
+      "source": "paper/sections/entropy.tex",
+      "title": "Entropy in a fixed-coordinate fiber",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "entropy_collision_subspaces",
+        "rank_one_fibers"
+      ],
+      "covered": "The indicated finite supports and collision spaces satisfy the equivalent integer or rational inequalities exactly.",
+      "paper_only": "The general conditional entropy calculation, irreducibility of the concrete permutation action, translation to E_j and averaging over the fixed coordinate remain in the paper."
+    },
+    {
+      "label": "lem:average-free",
+      "environment": "lemma",
+      "number": "6.1",
+      "section": 6,
+      "source": "paper/sections/hashing.tex",
+      "title": "Average-free sets",
+      "coverage": "finite_checks_only",
+      "lean_targets": [],
+      "exact_checks": [
+        "average_free_instance"
+      ],
+      "covered": "A single L=2 set used by the small hashing experiment is checked exactly.",
+      "paper_only": "The no-carry sphere construction and its log-size estimate for every fixed L>=2 and every sufficiently large integer q remain in the paper."
+    },
+    {
+      "label": "lem:rank-reduction",
+      "environment": "lemma",
+      "number": "7.1",
+      "section": 7,
+      "source": "paper/sections/hashing.tex",
+      "title": "Uniform reduction of ranks",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "The finite-field kernel theorem below assumes an actual finite-field linear map and uses its computed rank; it does not prove this rank-transfer statement.",
+      "paper_only": "The integer-minor bound giving one prime threshold independent of the number of columns is proved in the paper."
+    },
+    {
+      "label": "lem:product-dimension",
+      "environment": "lemma",
+      "number": "10.1",
+      "section": 10,
+      "source": "paper/sections/upper.tex",
+      "title": "Dimension of coordinatewise products",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No direct Lean declaration or exact check is assigned.",
+      "paper_only": "Existence of a vector nonzero on the union of coordinate supports, the product-space dimension inequality over C and its iteration are proved in the paper."
+    },
+    {
+      "label": "lem:diagonal-slice",
+      "environment": "lemma",
+      "number": "10.2",
+      "section": 10,
+      "source": "paper/sections/upper.tex",
+      "title": "Slice rank of a diagonal tensor",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No direct Lean declaration or exact check is assigned.",
+      "paper_only": "The slice decomposition, annihilator argument and monotonicity under arbitrary independent complex-linear maps are proved in the paper."
+    },
+    {
+      "label": "prop:upper",
+      "environment": "proposition",
+      "number": "10.3",
+      "section": 10,
+      "source": "paper/sections/upper.tex",
+      "title": "Finite-power entropy upper bound",
+      "coverage": "paper_only",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No direct Lean declaration or exact check is assigned.",
+      "paper_only": "For every N>=1, the probability-score count, slice cover and Q<=slice rank<=k exp(N H(p)) bound are proved in the paper."
+    }
+  ],
+  "supporting_steps": [
+    {
+      "label": "eq:cvz-convention-comparison",
+      "section": 2,
+      "source": "paper/sections/history.tex",
+      "title": "Comparison with the monomial-degeneration convention",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No direct Lean declaration or exact check is assigned.",
+      "paper_only": "The chain from the coordinate-restriction rate through the cited monomial-degeneration and ordinary subexponents uses Theorem 1.11 of the cited work for ordinary restriction and degeneration; no general equivalence of monomial restriction and monomial degeneration is assumed."
+    },
+    {
+      "label": "eq:fiber-count",
+      "section": 5,
+      "source": "paper/sections/entropy.tex",
+      "title": "Full-support partner count",
+      "lean_targets": [
+        "partner_position_count",
+        "partner_histogram_count",
+        "balanced_partner_count",
+        "exact_span_partner_subset",
+        "exact_span_partner_bound"
+      ],
+      "exact_checks": [],
+      "covered": "Lean proves the product over positions, its histogram regrouping, the balanced product and the exact-span subset and cardinality bound. The second word ranges over the entire original support.",
+      "paper_only": "Identification of that product with exp(N F_Z(V)), the entropy inequality and the resulting exponential bound remain in the paper."
+    },
+    {
+      "label": "eq:type-count",
+      "section": 5,
+      "source": "paper/sections/entropy.tex",
+      "title": "Balanced multinomial class size",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No direct Lean declaration or exact check is assigned.",
+      "paper_only": "The balanced multinomial maximum, polynomial loss and log-size asymptotic are proved in the paper."
+    },
+    {
+      "label": "eq:single-survival",
+      "section": 7,
+      "source": "paper/sections/hashing.tex",
+      "title": "Single-edge survival probability",
+      "lean_targets": [],
+      "exact_checks": [
+        "hash_exhaustion"
+      ],
+      "covered": "Every edge in the finite experiment has exactly 3993 surviving assignments.",
+      "paper_only": "The general hash-map identities, disjoint common-hash events and uniform probability formula remain in the paper."
+    },
+    {
+      "label": "eq:pair-survival",
+      "section": 7,
+      "source": "paper/sections/hashing.tex",
+      "title": "Pair survival and finite-field kernel count",
+      "lean_targets": [
+        "finite_field_kernel_count"
+      ],
+      "exact_checks": [
+        "hash_exhaustion"
+      ],
+      "covered": "Lean proves the universal finite-field kernel cardinality formula for an actual linear map. Every listed pair in the finite experiment has exactly 363 surviving assignments.",
+      "paper_only": "Constructing the concrete hash constraint map, removing its redundant row, transferring the rational rank modulo q and deriving the general pair probability remain in the paper."
+    },
+    {
+      "label": "sec:isolation",
+      "section": 8,
+      "source": "paper/sections/hashing.tex",
+      "title": "Isolation against all original edges",
+      "lean_targets": [
+        "isolation_count",
+        "exact_coordinate_extraction"
+      ],
+      "exact_checks": [
+        "hash_exhaustion"
+      ],
+      "covered": "Lean proves the full-support collision count and exact coordinate support extraction, with injectivity in every mode. The finite experiment checks the same extraction against all 27 original edges.",
+      "paper_only": "Interpreting an induced matching as a diagonal tensor under independent local relabelling remains in the paper. The extraction theorem requires a positive number of modes."
+    },
+    {
+      "label": "eq:expected-diagonal",
+      "section": 8,
+      "source": "paper/sections/hashing.tex",
+      "title": "Extraction for one sample above the mean",
+      "lean_targets": [
+        "uniform_isolation_extraction"
+      ],
+      "exact_checks": [
+        "hash_exhaustion"
+      ],
+      "covered": "Lean proves existence of a finite uniform sample with the exact support restriction and a cross-multiplied bound by the mean of X-Y, for a nonempty sample space and a positive number of modes.",
+      "paper_only": "The tensor-subrank interpretation and the analytic probability notation in the displayed inequality remain in the paper."
+    },
+    {
+      "label": "eq:monomial-lower",
+      "section": 9,
+      "source": "paper/sections/hashing.tex",
+      "title": "Asymptotic coordinate-restriction lower bound",
+      "lean_targets": [],
+      "exact_checks": [],
+      "covered": "No direct Lean declaration or exact check is assigned.",
+      "paper_only": "The prime-indexed choice of N, exponentially small collision ratio, all asymptotic estimates, passage to the limit and removal of delta remain in the paper."
+    },
+    {
+      "label": "eq:integer-entropy-check",
+      "section": 11,
+      "source": "paper/sections/verification.tex",
+      "title": "Exact integer form of the fiber-entropy inequality",
+      "lean_targets": [],
+      "exact_checks": [
+        "entropy_collision_subspaces"
+      ],
+      "covered": "The displayed integer inequality is checked for the five stated finite supports and their enumerated nonzero collision subspaces.",
+      "paper_only": "The logarithmic equivalence and its application to arbitrary multiplicities remain in the paper; finite enumeration is not a universal proof."
+    }
+  ],
+  "aggregate": {
+    "declaration": "TR28.core_theorems",
+    "proposition": "TR28.CoreTheorems",
+    "source": "lean/TR28/Proofs.lean",
+    "scope": "Conjunction of the ten finite universal algebraic targets. It does not state the entropy formula or the full tensor theorem."
+  }
+}

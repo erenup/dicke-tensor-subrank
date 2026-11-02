@@ -1,0 +1,260 @@
+\section{An entropy inequality from irreducible invariance}
+\label{sec:entropy}
+
+We use finite Shannon entropy with natural logarithms.  For a random
+variable $X$ with finite support, write
+\[
+  \HH(X)=-\sum_x \Prob(X=x)\log\Prob(X=x),
+\]
+where $0\log 0=0$, and define conditional entropy by averaging over the
+conditioning variable.  The chain rule is
+$\HH(X,Y)=\HH(Y)+\HH(X\mid Y)$.
+We will use nonnegativity of conditional mutual information.  To recall
+its elementary basis, for probability vectors $p$ and $q$ the relative
+entropy
+\[
+  \operatorname{KL}(p\Vert q)=\sum_{x:p_x>0}p_x\log\frac{p_x}{q_x}
+\]
+is nonnegative, with value $+\infty$ if some $p_x>0$ has $q_x=0$.
+Otherwise, the inequality $-\log u\geq 1-u$ gives
+\[
+  \operatorname{KL}(p\Vert q)
+  \geq \sum_{x:p_x>0}(p_x-q_x)\geq 0.
+\]
+Conditional mutual information is the average, over the conditioning
+variable, of the relative entropy of a conditional joint law with
+respect to the product of its marginals.  Thus
+\[
+  \operatorname{I}(A;B\mid C)
+  =\HH(A\mid C)+\HH(B\mid C)-\HH(A,B\mid C)\geq 0.
+\]
+In particular, if $C$ is a deterministic function of $A$ and also of $B$,
+the chain rule yields
+\begin{equation}
+  \operatorname{I}(A;B)
+  =\HH(C)+\operatorname{I}(A;B\mid C)\geq\HH(C).
+  \label{eq:common-quotient-information}
+\end{equation}
+
+Let $E$ be a finite-dimensional vector space over $\Q$, and let $X$ be
+an $E$-valued random variable with finite support.  For a rational linear
+subspace $V\leq E$, the notation $X\bmod V$ denotes its coset label,
+which is a finite-valued random variable.  Put
+\begin{equation}
+  F_X(V)=\HH(X\mid X\bmod V)
+        =\HH(X)-\HH(X\bmod V).
+  \label{eq:quotient-entropy}
+\end{equation}
+The last equality holds because the coset label is a function of $X$.
+In particular, $F_X(0)=0$ and $F_X(E)=\HH(X)$.
+
+\begin{lemma}[Supermodularity]
+\label{lem:supermodular}
+For rational linear subspaces $U,V\leq E$,
+\begin{equation}
+  F_X(U)+F_X(V)
+  \leq F_X(U+V)+F_X(U\cap V).
+  \label{eq:entropy-supermodularity}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Set $A=X\bmod U$, $B=X\bmod V$, and $C=X\bmod(U+V)$.
+The pair $(A,B)$ and the label $X\bmod(U\cap V)$ determine each other
+on the finite support: two support points have the same pair of labels
+if and only if their difference belongs to both $U$ and $V$.
+Moreover, $C$ is a deterministic function of each of $A$ and $B$.
+Equation~\eqref{eq:common-quotient-information} therefore gives
+\[
+  \HH(X\bmod U)+\HH(X\bmod V)
+  -\HH(X\bmod(U\cap V))
+  \geq \HH(X\bmod(U+V)).
+\]
+Substituting \eqref{eq:quotient-entropy} proves the assertion.
+\end{proof}
+
+\begin{lemma}[Irreducible invariance]
+\label{lem:invariant}
+Suppose that $\dim E=t>0$, a group $G$ acts $\Q$-linearly and
+irreducibly on $E$, and $gX$ has the same law as $X$ for every $g\in G$.
+Then every rational subspace $V\leq E$ satisfies
+\begin{equation}
+  F_X(V)\leq \frac{\dim V}{t}\,\HH(X).
+  \label{eq:invariant-entropy}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+A finite set has only finitely many partitions.  The partition of the
+support into cosets of $V$ determines $F_X(V)$, so this quantity takes
+only finitely many values as $V$ varies.  Since the positive dimensions
+also belong to a finite set, the maximum
+\[
+  \lambda=\max_{0\neq V\leq E}\frac{F_X(V)}{\dim V}
+\]
+exists.  Choose a maximizing subspace $V$ of largest dimension.
+Invariance of the law of $X$ gives $F_X(gV)=F_X(V)$, so $gV$ is another
+maximizer for every $g\in G$.  Supermodularity and the definition of
+$\lambda$ imply
+\begin{align*}
+  \lambda\bigl(\dim V+\dim gV\bigr)
+  &\leq F_X(V+gV)+F_X(V\cap gV)\\
+  &\leq\lambda\bigl(\dim(V+gV)+\dim(V\cap gV)\bigr).
+\end{align*}
+The bound on the intersection also holds when it is zero because
+$F_X(0)=0$.  The two outer expressions coincide by the dimension formula.
+Thus $V+gV$ attains the maximum slope as well.  The choice of $V$ forces
+$\dim(V+gV)=\dim V$, whence $gV=V$.  Since this holds for every $g$,
+irreducibility and $V\neq 0$ imply $V=E$.
+Consequently $\lambda=F_X(E)/t=\HH(X)/t$, proving the bound for every
+nonzero subspace; the zero subspace satisfies it directly.
+The argument also applies when $\HH(X)=0$.
+\end{proof}
+
+\section{Permutation fibers and counts over the full support}
+\label{sec:fibers}
+
+Fix the positive multiplicity tuple $\mathbf d=(d_1,\ldots,d_n)$, with
+$n\geq 2$ and $k=\sum_a d_a\geq 3$.  All constants in the remainder of
+the proof may depend on this fixed tuple.  Define
+\begin{equation}
+  p_a=\frac{d_a}{k},\qquad
+  M=\frac{k!}{\prod_{a=1}^n d_a!},\qquad
+  h=\log M,\qquad
+  \alpha_a=ka-\sum_{c=1}^n c\,d_c.
+  \label{eq:support-parameters}
+\end{equation}
+The integers $\alpha_a$ are distinct.  Let $S\subseteq\mathbb Z^k$ be
+the set of tuples containing $\alpha_a$ exactly $d_a$ times for every
+$a$.  Replacing the symbol $a$ by $\alpha_a$ is only an injective
+labelling of the basis symbols of $D_{\mathbf d}$; it is not an operation
+on the tensor.  We have $|S|=M$ and
+\[
+  \sum_{i=1}^k s_i=0\qquad(s\in S).
+\]
+Let $Z$ be uniform on $S$.  Each coordinate $Z_j$ has distribution $p$
+on the integer labels, so
+\[
+  \HH(Z)=h,\qquad \HH(Z_j)=\HH(p),\qquad
+  \HH(p)=-\sum_{a=1}^n p_a\log p_a.
+\]
+For $1\leq j\leq k$, put
+\begin{equation}
+  E_j=\left\{v\in\Q^k:
+           \sum_{i=1}^k v_i=0,\ v_j=0\right\},
+  \qquad \dim E_j=k-2,
+  \qquad \beta=\frac{h-\HH(p)}{k-2}\geq 0.
+  \label{eq:collision-space}
+\end{equation}
+Nonnegativity follows from $h-\HH(p)=\HH(Z\mid Z_j)$.
+
+\begin{lemma}[Entropy in a fixed-coordinate fiber]
+\label{lem:fiber-entropy}
+If $V\leq E_j$ is a rational subspace of dimension $r$, then
+\begin{equation}
+  F_Z(V)\leq r\beta.
+  \label{eq:fiber-entropy-bound}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Since every vector of $V$ has coordinate $j$ equal to zero, the quotient
+label $Z\bmod V$ determines $Z_j$.  Condition on $Z_j=\alpha_a$.
+The other $k-1$ coordinates are uniformly distributed among permutations
+of the multiset obtained by removing one copy of $\alpha_a$; their sum
+is $-\alpha_a$.  Set the $j$th coordinate to zero and replace every
+other coordinate $Z_i$ by $Z_i+\alpha_a/(k-1)$.  This translates the
+conditional support into $E_j$.  The translation preserves differences,
+entropy, and the conditional entropy modulo $V$.  The translated law
+is invariant under all permutations of the $k-1$ coordinates different
+from $j$.
+
+The resulting standard action of the symmetric group on $E_j$ is
+irreducible over $\Q$.  Indeed, let $W\leq E_j$ be a nonzero invariant
+subspace and choose $v\in W\setminus\{0\}$.  Among the $k-1$ moving
+coordinates, two entries $v_u,v_w$ must differ, since they sum to zero.
+Subtracting the image of $v$ under their transposition yields
+\[
+  (v_u-v_w)(e_u-e_w)\in W.
+\]
+The coefficient is nonzero.  Permuting this difference gives all
+coordinate differences among the moving coordinates, which span $E_j$.
+Thus $W=E_j$.  The same argument includes $k=3$, when $E_j$ is
+one-dimensional.
+
+Lemma~\ref{lem:invariant}, applied to each translated conditional law,
+now gives
+\[
+  \HH(Z\mid Z\bmod V,\ Z_j=\alpha_a)
+  \leq\frac{r}{k-2}\,\HH(Z\mid Z_j=\alpha_a).
+\]
+A conditional law supported at one point has entropy zero and obeys the
+same inequality.  Average with weights
+$\Prob(Z_j=\alpha_a)=p_a$.  Since $Z\bmod V$ determines $Z_j$, the left
+side averages to $F_Z(V)$.  The right side averages to
+\[
+  \frac{r}{k-2}\,\HH(Z\mid Z_j)
+  =\frac{r}{k-2}\bigl(h-\HH(p)\bigr)
+  =r\beta,
+\]
+which proves the claim.
+\end{proof}
+
+For $s\in S$ and a rational subspace $V\leq E_j$, define
+\[
+  C_V(s)=(s+V)\cap S.
+\]
+Conditioned on a coset, the uniform variable $Z$ is uniform on the
+corresponding fiber.  Therefore
+\begin{equation}
+  F_Z(V)=\frac{1}{M}\sum_{s\in S}\log |C_V(s)|.
+  \label{eq:fiber-entropy-identity}
+\end{equation}
+
+Let $N$ be a positive multiple of $M$.  Identify a support edge of
+$D_{\mathbf d}^{\boxtimes N}$ with its sequence of $N$ support columns,
+and define
+\[
+  \mathcal A_N=
+  \left\{I=(I(1),\ldots,I(N))\in S^N:
+    \#\{t:I(t)=s\}=N/M\ \text{for every }s\in S\right\}.
+\]
+We call these edges \emph{candidates}.  They form a counting class;
+we do not assume that the full joint type $\mathcal A_N$ can itself be
+selected by local linear maps.
+
+For a fixed candidate $I\in\mathcal A_N$, each column of a partner
+$J\in S^N$ satisfying $J(t)-I(t)\in V$ can be chosen independently
+from $C_V(I(t))$.  Hence the count over the \emph{entire original support}
+is exactly
+\begin{align}
+  \#\bigl\{J\in S^N:J(t)-I(t)\in V\ \text{for all }1\leq t\leq N\bigr\}
+  &=\prod_{s\in S}|C_V(s)|^{N/M}\notag\\
+  &=\exp\bigl(NF_Z(V)\bigr)
+   \leq\exp(Nr\beta),\qquad r=\dim V.
+  \label{eq:fiber-count}
+\end{align}
+No joint-type or marginal-type condition is imposed on $J$.
+In particular, \eqref{eq:fiber-count} also bounds the smaller class of
+partners whose column differences span exactly $V$.
+
+Finally, the size of the candidate class satisfies
+\begin{equation}
+  \frac{M^N}{(N+1)^M}
+  \leq |\mathcal A_N|
+  =\frac{N!}{((N/M)!)^M}
+  \leq M^N.
+  \label{eq:type-count}
+\end{equation}
+There are at most $(N+1)^M$ count vectors for words in an $M$-letter
+alphabet.  The balanced vector maximizes its multinomial coefficient
+when $M$ divides $N$: if two counts differ by at least two, transferring
+one occurrence from the larger to the smaller strictly decreases the
+factorial denominator.  At a maximum, all counts therefore equal
+$N/M$.  Since the multinomial classes partition the $M^N$ words, their
+largest class has size at least $M^N/(N+1)^M$.  The upper bound follows
+from $\mathcal A_N\subseteq S^N$.
+For fixed $\mathbf d$, equation~\eqref{eq:type-count} yields
+\[
+  \log|\mathcal A_N|=Nh-o(N).
+\]
